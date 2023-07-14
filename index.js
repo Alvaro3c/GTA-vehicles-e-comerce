@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
 
 //Rutas
 app.use('/api/orders', ordersApiRoutes);
-app.use('api/vehicles',)
 app.use(error404);
 
 app.listen(3000, () => {
