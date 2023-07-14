@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 //Módulos de rutas
 const ordersApiRoutes = require('./routes/ordersApiRoutes')
 
+
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 
 //Rutas
 app.use('/api/orders', ordersApiRoutes);
+app.use('api/vehicles',)
 app.use(error404);
 
 app.listen(3000, () => {

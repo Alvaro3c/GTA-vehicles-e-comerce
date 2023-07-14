@@ -18,12 +18,6 @@ const createOrder = async (req, res) => {
             return car.car_model
         })
         let totalPrice = 0
-        /*    await filteredCars.map(async (car) => {
-               let response = await vehiclesApiController.getCarByModel(car.car_model)
-               let price = response.price
-               console.log(price)
-               totalPrice = totalPrice + price
-           }) */
         const promises = filteredCars.map(car => vehiclesApiController.getCarByModel(car.car_model).then(response => response));
         const responses = await Promise.all(promises);
         responses.map((response) => {
@@ -31,6 +25,7 @@ const createOrder = async (req, res) => {
             console.log(price)
             totalPrice = totalPrice + price
         })
+        //falta añadir info de udsuario que entra. revisar el req.body
         //A partir de aqui pasar al model y a ua query que inserte cada dato
         res.status(201).send('orden creada')
     } else {

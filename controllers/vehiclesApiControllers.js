@@ -10,7 +10,18 @@ const getCarByModel = async (model) => {
     }
 }
 
+const getAllVehicles = async () => {
+    try {
+        const response = await fetch('https://gta.vercel.app/api/vehicles/all')
+        const allVehicles = await response.json()
+        return allVehicles
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = {
-    getCarByModel
+    getCarByModel,
+    getAllVehicles
 };
