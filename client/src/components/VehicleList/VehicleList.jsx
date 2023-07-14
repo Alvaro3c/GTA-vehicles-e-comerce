@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Vehicle from '../Vehicle/Vehicle'
+import Order from '../Order/Order'
 
 
 const VehicleList = (props) => {
@@ -10,7 +11,6 @@ const VehicleList = (props) => {
 
   const handleSelectChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     setSelectedType(e.target.value)
   }
 
@@ -28,13 +28,12 @@ const VehicleList = (props) => {
     const data = await resp.json();
 
     const arrVehicles = Object.values(data);//converts an object to an array to be iterated 
-    console.log({ arrVehicles });
     setVehicles(arrVehicles);
-    //arrVehicles.map((vehicle) => console.log(vehicle))
   }
 
   return <>
     <div>VehicleList</div>
+    <Order />
     <label htmlFor="select-car-type">Select a type</label>
     <select name="" id="select-car-type" onChange={handleSelectChange}>
       <option value="suvs">suvs</option>
@@ -48,7 +47,7 @@ const VehicleList = (props) => {
       <option value="muscle">muscle</option>
       <option value="compacts">compacts</option>
     </select>
-    {vehicles && vehicles.map((item, i) => <Vehicle key={i} model={item.model} price={item.price} imgUrl={item.images.frontQuarter} />)}
+    {vehicles && vehicles.map((item, i) => <Vehicle key={i} manufacturer={item.manufacturer} model={item.model} price={item.price} imgUrl={item.images.frontQuarter} shopingCart={props.shopingCart} setShopingCart={props.setShopingCart} />)}
 
   </>;
 };

@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Vehicle = (props) => {
 
-  return <div>
-    <h1>Model:{props.model}</h1>
+
+
+
+  const handleShoppingCartBtn = () => {
+    const updatedCart = [...props.shopingCart, { make: props.manufacturer, model: props.model, quantity: 1, price: props.price }];
+    props.setShopingCart(updatedCart);
+
+
+  }
+  return <article>
+    <h1>{props.model}</h1>
     <img src={props.imgUrl} alt={props.model} />
     <p>{props.price}</p>
     <button>Show more stats</button>
-    <button>Add to shopping cart</button>
-  </div>;
+    <button onClick={handleShoppingCartBtn}>Add to shopping cart</button>
+
+  </article>;
 };
 
 export default Vehicle;
