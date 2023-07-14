@@ -18,7 +18,7 @@ const VehicleList = (props) => {
     if (search === '') {
       getVehicles();
     } else {
-      const filteredVehicles = vehicles.filter((item) => item.manufacturer.includes(search))
+      const filteredVehicles = vehicles.filter((item) => item.manufacturer.includes(search) || item.model.includes(search))
       setVehicles(filteredVehicles)
     }
   }, [search, selectedType])
