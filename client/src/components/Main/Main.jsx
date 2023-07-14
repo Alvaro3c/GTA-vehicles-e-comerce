@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import VehicleList from '../VehicleList/VehicleList'
 import SearchVehicle from '../SearchVehicle/SearchVehicle'
 
 const Main = () => {
+
+  const [search, setSearch] = useState('')
+
   return <>
-    <div>Main</div>
-    <VehicleList />
-    <SearchVehicle />
+    <SearchVehicle setSearch={setSearch} />
+    <VehicleList search={search} />
   </>
 };
 
