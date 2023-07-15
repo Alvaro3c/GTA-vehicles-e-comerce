@@ -34,6 +34,7 @@ const createdOrder = async () => {
 
 const orders = {
     getAllOrders,
+    createdOrder
 }
 
 module.exports = orders;

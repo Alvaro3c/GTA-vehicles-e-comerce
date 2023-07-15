@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import VehicleList from '../VehicleList/VehicleList';
 
 
 const SearchVehicle = (props) => {
@@ -12,6 +13,7 @@ const SearchVehicle = (props) => {
 
   return <form>
     <input type="text" placeholder="Search Vehicle" onChange={changeHandler} value={searchValue} />
+    <VehicleList />
 
   </form>;
 };

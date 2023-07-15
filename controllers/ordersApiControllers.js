@@ -13,7 +13,7 @@ const createOrder = async (req, res) => {
         // Insert the order data into the PostgreSQL database using the appropriate model or ORM
 
         // Example code to insert the order using the order model
-        const createdOrder = await order.createOrder(id_user, cars, total_cost);
+        const createdOrder = await order.createdOrder(id_user, cars, total_cost);
 
         res.status(201).json(createdOrder);
     } catch (error) {
