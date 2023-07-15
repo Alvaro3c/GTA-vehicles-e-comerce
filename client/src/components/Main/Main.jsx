@@ -10,9 +10,9 @@ const Main = () => {
   console.log(shopingCart);
 
   return <>
+    <Order shopingCart={shopingCart} setShopingCart={setShopingCart} />
     <SearchVehicle setSearch={setSearch} />
     <VehicleList search={search} shopingCart={shopingCart} setShopingCart={setShopingCart} />
-
   </>
 };
 

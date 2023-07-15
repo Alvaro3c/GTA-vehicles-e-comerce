@@ -14,6 +14,7 @@ const VehicleList = (props) => {
     setSelectedType(e.target.value)
   }
 
+  //Seacrh vehicle
   useEffect(() => {
     if (search === '') {
       getVehicles();
@@ -23,6 +24,7 @@ const VehicleList = (props) => {
     }
   }, [search, selectedType])
 
+  //fetch vehicles
   const getVehicles = async () => {
     const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
     const data = await resp.json();
@@ -32,8 +34,7 @@ const VehicleList = (props) => {
   }
 
   return <>
-    <div>VehicleList</div>
-    <Order />
+
     <label htmlFor="select-car-type">Select a type</label>
     <select name="" id="select-car-type" onChange={handleSelectChange}>
       <option value="suvs">suvs</option>
