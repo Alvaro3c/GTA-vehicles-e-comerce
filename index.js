@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const error404 = require('./middlewares/error404');
 const bodyParser = require('body-parser')
@@ -6,17 +7,15 @@ const bodyParser = require('body-parser')
 //Módulos de rutas
 const ordersApiRoutes = require('./routes/ordersApiRoutes')
 
-
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send('funciona');
-});
+// Enable CORS
+app.use(cors());
 
-//Rutas
+// Routes
 app.use('/api/orders', ordersApiRoutes);
 app.use(error404);
 

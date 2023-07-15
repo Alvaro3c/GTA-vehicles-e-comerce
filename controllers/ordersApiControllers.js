@@ -1,51 +1,38 @@
 const order = require('../models/orders');
-const vehiclesApiController = require('../controllers/vehiclesApiControllers')
 
 const getAllOrders = async (req, res) => {
-    let orders
-    orders = await order.getAllOrders()
+    let orders;
+    orders = await order.getAllOrders();
     res.status(200).json(orders);
 };
 
 const createOrder = async (req, res) => {
-    /* 
-    Queremos introducir en la tabla de orders el id del usuario que lo crea, los coches que se han comprado y en que cantidad y el coste total calculado del pedido. Si no hay un usuario logeado, será el numero 1.
-    */
+    try {
+        const { id_user, cars, total_cost } = req.body;
+        // Perform necessary validations on the received data
+        // Insert the order data into the PostgreSQL database using the appropriate model or ORM
 
-    if (req.body.cars && req.body.cars.length > 0) {
-        const cars = req.body.cars
-        const filteredCars = cars.filter((car) => {
-            return car.car_model
-        })
-        let totalPrice = 0
-        const promises = filteredCars.map(car => vehiclesApiController.getCarByModel(car.car_model).then(response => response));
-        const responses = await Promise.all(promises);
-        responses.map((response) => {
-            let price = response.price
-            console.log(price)
-            totalPrice = totalPrice + price
-        })
-        //falta añadir info de udsuario que entra. revisar el req.body
-        //A partir de aqui pasar al model y a ua query que inserte cada dato
-        res.status(201).send('orden creada')
-    } else {
-        res.status(400).send('Petición incorrecta')
+        // Example code to insert the order using the order model
+        const createdOrder = await order.createOrder(id_user, cars, total_cost);
+
+        res.status(201).json(createdOrder);
+    } catch (error) {
+        console.error("Error creating order:", error);
+        res.status(500).json({ error: "Error creating order" });
     }
-
 };
 
 const updateOrder = async (req, res) => {
-
+    // Implement the update order logic
 };
 
 const deleteOrder = async (req, res) => {
-
+    // Implement the delete order logic
 };
-
 
 module.exports = {
     getAllOrders,
     createOrder,
     updateOrder,
-    deleteOrder
+    deleteOrder,
 };

@@ -1,14 +1,18 @@
 import React from "react";
-import axios from "axios"
-
+import axios from "axios";
 
 const Order = ({ shopingCart }) => {
-
   const handleOrderSubmit = async () => {
     try {
-      const response = await axios.post("/api/orders", {
+      const totalCost = shopingCart.reduce((acc, item) => acc + item.price, 0);
+
+      const orderData = {
+        id_user: 1,
         cars: shopingCart,
-      });
+        total_cost: totalCost,
+      };
+
+      const response = await axios.post("http://localhost:3000/api/orders", orderData);
 
       if (response.status === 201) {
         console.log("Order created successfully");
