@@ -1,0 +1,16 @@
+button {
+    color: rgb(255, 170, 0);
+    border: none;
+}
+
+.type-select {
+    border: none;
+    color: rgb(255, 170, 0);
+    padding: 30px;
+    margin-right: 20px;
+}
+
+.group-cards {
+    display: flex;
+    flex-wrap: wrap;
+}

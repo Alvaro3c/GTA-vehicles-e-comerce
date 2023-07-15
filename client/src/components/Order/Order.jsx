@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Order = ({ shopingCart }) => {
+  const [totalCost, setTotalCost] = useState(0);
+
+  useEffect(() => {
+    const calculateTotalCost = () => {
+      const cost = shopingCart.reduce((acc, item) => acc + item.price, 0);
+      setTotalCost(cost);
+    };
+
+    calculateTotalCost();
+  }, [shopingCart]);
+
   const handleOrderSubmit = async () => {
     try {
-      const totalCost = shopingCart.reduce((acc, item) => acc + item.price, 0);
-
       const orderData = {
         id_user: 1,
         cars: shopingCart,
@@ -37,6 +46,7 @@ const Order = ({ shopingCart }) => {
       ) : (
         <p>Your shopping cart is empty.</p>
       )}
+      <p>Total cost: {totalCost}</p>
       <button onClick={handleOrderSubmit}>Submit Your Order</button>
     </section>
   );

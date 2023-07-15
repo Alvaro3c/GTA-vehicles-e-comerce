@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Vehicle from '../Vehicle/Vehicle';
+import './VehicleList.css'
 
 const VehicleList = (props) => {
   const search = props.search;
@@ -31,11 +32,20 @@ const VehicleList = (props) => {
   }, [search, selectedType]);
 
   const getVehicles = async () => {
-    const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
-    const data = await resp.json();
-    const arrVehicles = Object.values(data);
-    setVehicles(arrVehicles);
-    handleSortAndPageChange(arrVehicles);
+
+    if (selectedType) {
+      const resp = await fetch('https://gta.vercel.app/api/vehicles/all')
+      const data = await resp.json()
+
+      setVehicles(arrVehicles);
+      handleSortAndPageChange(arrVehicles);
+    } else {
+      const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
+      const data = await resp.json();
+      const arrVehicles = Object.values(data);
+      setVehicles(arrVehicles);
+      handleSortAndPageChange(arrVehicles);
+    }
   };
 
   const handleSortAndPageChange = (sortedVehiclesData) => {
@@ -107,8 +117,8 @@ const VehicleList = (props) => {
 
   return (
     <>
-      <label htmlFor="select-car-type">Select a type</label>
-      <select name="" id="select-car-type" onChange={handleSelectChange}>
+      <select className="type-select" id="select-car-type" onChange={handleSelectChange}>
+        <option value="">Select a class</option>
         <option value="suvs">suvs</option>
         <option value="super">super</option>
         <option value="sportsclassics">sportsclassics</option>
@@ -123,18 +133,21 @@ const VehicleList = (props) => {
       <button onClick={handleSortSpeed}>Sort by Speed</button>
       <button onClick={handleSortAlphabetically}>Sort Alphabetically</button>
       {renderPagination()}
-      {vehiclesSliced &&
-        vehiclesSliced.map((item, i) => (
-          <Vehicle
-            key={i}
-            manufacturer={item.manufacturer}
-            model={item.model}
-            price={item.price}
-            imgUrl={item.images.frontQuarter}
-            shopingCart={props.shopingCart}
-            setShopingCart={props.setShopingCart}
-          />
-        ))}
+      <section className="group-cards">
+        {vehiclesSliced &&
+          vehiclesSliced.map((item, i) => (
+            <Vehicle
+              key={i}
+              manufacturer={item.manufacturer}
+              model={item.model}
+              price={item.price}
+              imgUrl={item.images.frontQuarter}
+              shopingCart={props.shopingCart}
+              setShopingCart={props.setShopingCart}
+
+            />
+          ))}
+      </section>
     </>
   );
 };
