@@ -26,12 +26,11 @@ const VehicleList = (props) => {
     } else {
       const filteredVehicles = vehicles.filter((item) => item.manufacturer.includes(search) || item.model.includes(search))
       setVehicles(filteredVehicles)
-
     }
     setSelectedPage(1)
     handlePageChange(1)
   }, [search, selectedType])
-  console.log(vehicles)
+
   //fetch vehicles
   const getVehicles = async () => {
     const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
@@ -42,6 +41,7 @@ const VehicleList = (props) => {
     const slicedData = arrVehicles.slice(0, 10);
     setVehiclesSliced(slicedData);
   }
+
   const handleSortSpeed = () => {
     const sortedVehicles = vehicles
       .map((vehicle, index) => ({ index, mph: vehicle?.topSpeed?.mph }))
@@ -59,6 +59,7 @@ const VehicleList = (props) => {
     }
     setSortAtoZ(!sortAtoZ)
   };
+
   const handlePageChange = (page) => {
     setSelectedPage(page)
     // Calculate start and end indices
@@ -69,6 +70,7 @@ const VehicleList = (props) => {
     const slicedData = vehicles.slice(startIndex, endIndex);
     setVehiclesSliced(slicedData);
   }
+
   const renderPagination = () => {
     const pageNumbers = []
 

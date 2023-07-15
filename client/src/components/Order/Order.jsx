@@ -1,6 +1,23 @@
 import React from "react";
 
+
 const Order = ({ shopingCart }) => {
+
+  const handleOrderSubmit = async () => {
+    try {
+      const response = await axios.post("/api/orders", {
+        cars: shopingCart,
+      });
+
+      if (response.status === 201) {
+        console.log("Order created successfully");
+        // Clear the shopping cart or perform any other necessary actions
+      }
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
+  };
+
   return (
     <section>
       <h2>Shopping Cart:</h2>
@@ -15,7 +32,7 @@ const Order = ({ shopingCart }) => {
       ) : (
         <p>Your shopping cart is empty.</p>
       )}
-      <button>Submit Your Order</button>
+      <button onClick={handleOrderSubmit}>Submit Your Order</button>
     </section>
   );
 };
