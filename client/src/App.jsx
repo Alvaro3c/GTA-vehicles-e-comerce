@@ -29,8 +29,13 @@ function App() {
           console.log("Login successful");
 
           setUser(response?.data?.userData)
+        } else {
+          Cookie.remove("email")
+          Cookie.remove("password")
         }
       } catch (error) {
+        Cookie.remove("email")
+        Cookie.remove("password")
         console.error("Error loging in:", error);
       }
     }

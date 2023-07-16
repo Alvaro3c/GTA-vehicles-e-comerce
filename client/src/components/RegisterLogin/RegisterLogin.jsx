@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie"
+import UserContext, { useUserContext } from "../contexts/UserContext";
 
 const RegisterLogin = () => {
   const isMounted = useRef(true); // Create a ref to track component's mount status
   const [registerData, setRegisterData] = useState({});
-
+  const userData = useUserContext()
   useEffect(() => {
     // Set isMounted to false when the component is unmounted
     return () => {
@@ -27,6 +28,7 @@ const RegisterLogin = () => {
         console.log("Login successful");
         Cookies.set("email", e.target.logInEmail.value)
         Cookies.set("password", e.target.logInPassword.value)
+        userData.setUser(response?.data?.userData)
         // Redirect to the home page on successful login
         // history.push("/home");
       }
@@ -47,8 +49,12 @@ const RegisterLogin = () => {
 
       const response = await axios.post("http://localhost:3000/api/users/register", registerData);
 
-      if (response.status === 201 && isMounted.current) {
+      if (response.status === 201) {
         console.log("User has been registered");
+        Cookies.set("email", e.target.registerEmail.value)
+        Cookies.set("password", e.target.registerPassword.value)
+        console.log(response)
+        userData.setUser(response?.data?.userData)
         // Clear the shopping cart or perform any other necessary actions
       }
     } catch (error) {

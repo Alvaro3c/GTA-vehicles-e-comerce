@@ -21,7 +21,7 @@ const register = async (req, res) => {
         );
 
         const userId = newUser.rows[0].id_user;
-        const userData = user.rows[0];
+        const userData = newUser.rows[0];
 
         // Generate a JWT token
         const token = generateToken(userId);
