@@ -6,9 +6,10 @@ const NavBar = () => {
   return <>
     <nav>
       <ul className='nav'>
-        <li className="nav-link active"><Link to='/'>HOME</Link></li>
+        <li className="nav-link active"><Link to='/home'>HOME</Link></li>
         <li className="nav-link "><Link to='/search'>SEARCH CAR</Link></li>
-        <li className="nav-link " > <Link to='/order'>SHOPPING CART</Link></li >
+        <li className="nav-link "><Link to='/pastorders'>PAST ORDERS</Link></li >
+        <li className="nav-link "><Link to='/order'>SHOPPING CART</Link></li >
       </ul >
     </nav >
 
