@@ -26,15 +26,14 @@ const Vehicle = ({ shopingCart, manufacturer, model, price, setShopingCart, imgU
 
 
 
-    <Card style={{ width: '18rem' }} className="border-0 text-bg-success m-4">
+    <Card style={{ width: '18rem' }} className="cards border-0 text-bg-success m-3">
       <Card.Img variant="top" src={imgUrl} alt={model} />
       <Card.Body>
         <Card.Title className="model">{model}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {price.toLocaleString('en-US') + ' ' + 'GTA$'}
         </Card.Text>
-        <Button onClick={handleShoppingCartBtn}>Add to shopping cart</Button>
+        <Button onClick={handleShoppingCartBtn} className="shoping-cart-btn">Add to shopping cart</Button>
       </Card.Body>
     </Card>
 

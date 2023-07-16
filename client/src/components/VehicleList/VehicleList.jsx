@@ -7,10 +7,10 @@ const VehicleList = (props) => {
   const [vehicles, setVehicles] = useState([]);
   const [sortedVehicles, setSortedVehicles] = useState([]);
   const [vehiclesSliced, setVehiclesSliced] = useState([]);
-  const [selectedType, setSelectedType] = useState('suvs');
+  const [selectedType, setSelectedType] = useState('super');
   const [sortAtoZ, setSortAtoZ] = useState(true);
   const [selectedPage, setSelectedPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 14;
 
   const handleSelectChange = (e) => {
     e.preventDefault();
@@ -33,20 +33,13 @@ const VehicleList = (props) => {
 
   const getVehicles = async () => {
 
-    if (selectedType) {
-      const resp = await fetch('https://gta.vercel.app/api/vehicles/all')
-      const data = await resp.json()
 
-      setVehicles(arrVehicles);
-      handleSortAndPageChange(arrVehicles);
-    } else {
-      const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
-      const data = await resp.json();
-      const arrVehicles = Object.values(data);
-      setVehicles(arrVehicles);
-      handleSortAndPageChange(arrVehicles);
-    }
-  };
+    const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
+    const data = await resp.json();
+    const arrVehicles = Object.values(data);
+    setVehicles(arrVehicles);
+    handleSortAndPageChange(arrVehicles);
+  }
 
   const handleSortAndPageChange = (sortedVehiclesData) => {
     const slicedData = sortedVehiclesData.slice(0, itemsPerPage);
@@ -148,6 +141,7 @@ const VehicleList = (props) => {
             />
           ))}
       </section>
+      {renderPagination()}
     </>
   );
 };

@@ -6,11 +6,16 @@ button {
 .type-select {
     border: none;
     color: rgb(255, 170, 0);
-    padding: 30px;
+    margin: 30px;
     margin-right: 20px;
+}
+
+.type-select:focus {
+    border: none;
 }
 
 .group-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }

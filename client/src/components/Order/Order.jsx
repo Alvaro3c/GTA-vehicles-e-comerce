@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Card from 'react-bootstrap/Card';
+
 
 const Order = ({ shopingCart }) => {
   const [totalCost, setTotalCost] = useState(0);
@@ -32,24 +34,35 @@ const Order = ({ shopingCart }) => {
     }
   };
 
-  return (
+  return <>
     <section>
       <h2>Shopping Cart:</h2>
       {shopingCart && shopingCart.length > 0 ? (
-        <ul>
+
+        <article>
           {shopingCart.map((item, index) => (
-            <li key={index}>
-              Make: {item.make}, Model: {item.model}, Quantity: {item.quantity}, Price: {item.price}
-            </li>
-          ))}
-        </ul>
+            <Card key={index} className="m-4 border-0">
+              <Card.Header className="color">{item.make + ' ' + item.model}</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  {'price: ' + item.price.toLocaleString('en-US') + ' ' + 'GTA$'}
+                </Card.Text>
+                <Card.Text>
+                  {'Quantity: ' + item.quantity}
+                </Card.Text>
+                <img src="{item}" alt="" />
+              </Card.Body>
+            </Card>))}
+        </article>
       ) : (
         <p>Your shopping cart is empty.</p>
       )}
-      <p>Total cost: {totalCost}</p>
+
+      <p>Total cost: {totalCost.toLocaleString('en-US') + ' ' + 'GTA$'}</p>
       <button onClick={handleOrderSubmit}>Submit Your Order</button>
     </section>
-  );
+
+  </>
 };
 
 export default Order;
