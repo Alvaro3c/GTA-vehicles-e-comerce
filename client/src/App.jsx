@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
-import Footer from './components/Footer/Footer'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Cookie from "js-cookie"
 import axios from 'axios';
 import UserContext from './components/contexts/UserContext';
 function App() {
   const [user, setUser] = useState()
-
+  const location = useLocation();
+  const hideHeaderRoutes = ["/register-login"]; // Add the paths where you want to hide the header
+  const shouldDisplayHeader = !hideHeaderRoutes.includes(location.pathname);
   useEffect(() => {
 
     const email = Cookie.get("email")
@@ -54,9 +56,9 @@ function App() {
         }}
       >
 
-        <Header />
+        {shouldDisplayHeader && <Header />}
         <Main />
-        <Footer />
+
       </UserContext.Provider>
     </>
   )

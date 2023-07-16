@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie"
 import UserContext, { useUserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import './RegisterLogin.css'
+
 
 const RegisterLogin = () => {
   const isMounted = useRef(true); // Create a ref to track component's mount status
@@ -13,9 +16,11 @@ const RegisterLogin = () => {
       isMounted.current = false;
     };
   }, []);
+  const navigate = useNavigate(); // Get the navigate function
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const logInData = {
         "email": e.target.logInEmail.value,
@@ -30,7 +35,7 @@ const RegisterLogin = () => {
         Cookies.set("password", e.target.logInPassword.value)
         userData.setUser(response?.data?.userData)
         // Redirect to the home page on successful login
-        // history.push("/home");
+        navigate("/home");
       }
     } catch (error) {
       console.error("Error loging in:", error);
@@ -64,18 +69,17 @@ const RegisterLogin = () => {
 
   return (
     <>
+      <form action="" onSubmit={handleLoginSubmit}>
+        <input name="logInEmail" type="text" placeholder="Write your email" />
+        <input name="logInPassword" type="text" placeholder="write your password" />
+        <button type="submit" className="form-btn">Log in</button>
+      </form>
+      <p>Not registered yet? register down here</p>
       <form action="" onSubmit={handleRegisterSubmit}>
         <input name="registerNick" type="text" placeholder="Write a nick name" />
         <input name="registerEmail" type="text" placeholder="Place your email" />
         <input name="registerPassword" type="text" placeholder="Write a new password" />
-        <button type="submit">Register</button>
-      </form>
-      <p>Not registered yet? register down here</p>
-      <form action="" onSubmit={handleLoginSubmit}>
-        <input name="logInNick" type="text" placeholder="write your nick name" />
-        <input name="logInEmail" type="text" placeholder="Write your email" />
-        <input name="logInPassword" type="text" placeholder="write your password" />
-        <button type="submit">Log in</button>
+        <button type="submit" className="form-btn">Register</button>
       </form>
     </>
   );

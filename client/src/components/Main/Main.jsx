@@ -24,11 +24,6 @@ const Main = () => {
 
       <Route path='/register-login' element={<RegisterLogin />} />
     </Routes>
-
-
-
-
-
   </>
 };
 
