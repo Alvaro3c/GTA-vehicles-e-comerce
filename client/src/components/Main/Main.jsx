@@ -14,7 +14,7 @@ const Main = () => {
   return <>
     <Routes>
       <Route path='/' element={<VehicleList search={search} shopingCart={shopingCart} setShopingCart={setShopingCart} />} />
-      <Route path='search' element={<SearchVehicle setSearch={setSearch} />} />
+      <Route path='search' element={<SearchVehicle setSearch={setSearch} shopingCart={shopingCart} setShopingCart={setShopingCart} />} />
       <Route path='order' element={<Order shopingCart={shopingCart} setShopingCart={setShopingCart} />} />
     </Routes>
 

@@ -31,7 +31,7 @@ const Vehicle = ({ shopingCart, manufacturer, model, price, setShopingCart, imgU
       <Card.Body>
         <Card.Title className="model">{model}</Card.Title>
         <Card.Text>
-          {price.toLocaleString('en-US') + ' ' + 'GTA$'}
+          {price?.toLocaleString('en-US') + ' ' + 'GTA$'}
         </Card.Text>
         <Button onClick={handleShoppingCartBtn} className="shoping-cart-btn">Add to shopping cart</Button>
       </Card.Body>

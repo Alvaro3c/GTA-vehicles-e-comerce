@@ -14,21 +14,25 @@ const VehicleList = (props) => {
 
   const handleSelectChange = (e) => {
     e.preventDefault();
+    props.setSearch("")
+
     setSelectedType(e.target.value);
     setSortAtoZ(false); // Set the default sorting order to ascending (A to Z)
   };
-
+  console.log(vehicles)
   useEffect(() => {
     if (search === '') {
+      console.log("first")
       getVehicles();
+      setSelectedPage(1);
+      handlePageChange(1)
     } else {
-      const filteredVehicles = vehicles.filter((item) =>
-        item.manufacturer.includes(search) || item.model.includes(search)
+      const filteredVehicles = vehicles?.filter((item) =>
+        item?.manufacturer?.includes(search) || item?.model?.includes(search)
       );
-      setVehicles(filteredVehicles);
+      setVehiclesSliced(filteredVehicles);
     }
-    setSelectedPage(1);
-    handlePageChange(1);
+
   }, [search, selectedType]);
 
   const getVehicles = async () => {
@@ -42,18 +46,23 @@ const VehicleList = (props) => {
   }
 
   const handleSortAndPageChange = (sortedVehiclesData) => {
+
     const slicedData = sortedVehiclesData.slice(0, itemsPerPage);
     setSortedVehicles(sortedVehiclesData);
     setVehiclesSliced(slicedData);
     setSelectedPage(1);
   };
 
-  const handleSortSpeed = () => {
+  const handleSortSpeed = (e) => {
+    e.preventDefault()
+    props.setSearch("")
     const sortedVehiclesData = [...vehicles].sort((a, b) => b?.topSpeed?.mph - a?.topSpeed?.mph);
     handleSortAndPageChange(sortedVehiclesData);
   };
 
-  const handleSortAlphabetically = () => {
+  const handleSortAlphabetically = (e) => {
+    e.preventDefault()
+    props.setSearch("")
     const sortedVehiclesData = [...vehicles].sort((a, b) => {
       const modelA = a.model || '';
       const modelB = b.model || '';
@@ -131,10 +140,10 @@ const VehicleList = (props) => {
           vehiclesSliced.map((item, i) => (
             <Vehicle
               key={i}
-              manufacturer={item.manufacturer}
-              model={item.model}
-              price={item.price}
-              imgUrl={item.images.frontQuarter}
+              manufacturer={item?.manufacturer}
+              model={item?.model}
+              price={item?.price}
+              imgUrl={item?.images?.frontQuarter}
               shopingCart={props.shopingCart}
               setShopingCart={props.setShopingCart}
 

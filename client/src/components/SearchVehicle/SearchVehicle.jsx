@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import VehicleList from '../VehicleList/VehicleList';
 
 
-const SearchVehicle = (props) => {
+const SearchVehicle = ({ setSearch, shopingCart, setShopingCart }) => {
 
   const [searchValue, setSearchValue] = useState('')
 
   const changeHandler = (e) => {
     setSearchValue(e.target.value)
-    props.setSearch(e.target.value)
+    setSearch(e.target.value)
   }
 
   return <form>
     <input type="text" placeholder="Search Vehicle" onChange={changeHandler} value={searchValue} />
-    <VehicleList />
+    <VehicleList search={searchValue} shopingCart={shopingCart} setShopingCart={setShopingCart} setSearch={setSearchValue} />
 
   </form>;
 };
