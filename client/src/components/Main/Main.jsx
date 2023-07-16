@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import VehicleList from '../VehicleList/VehicleList'
 import SearchVehicle from '../SearchVehicle/SearchVehicle'
 import Order from '../Order/Order'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import Home from '../Home/Home'
 
 
 const Main = () => {
@@ -13,7 +14,7 @@ const Main = () => {
 
   return <>
     <Routes>
-      <Route path='/' element={<VehicleList search={search} shopingCart={shopingCart} setShopingCart={setShopingCart} />} />
+      <Route path="/" element={<Home />} />
       <Route path='search' element={<SearchVehicle setSearch={setSearch} shopingCart={shopingCart} setShopingCart={setShopingCart} />} />
       <Route path='order' element={<Order shopingCart={shopingCart} setShopingCart={setShopingCart} />} />
     </Routes>
