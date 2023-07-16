@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 
 const Order = ({ shopingCart }) => {
   const [totalCost, setTotalCost] = useState(0);
-
+  console.log(shopingCart)
   useEffect(() => {
     const calculateTotalCost = () => {
       const cost = shopingCart.reduce((acc, item) => acc + item.price, 0);
@@ -19,7 +19,7 @@ const Order = ({ shopingCart }) => {
     try {
       const orderData = {
         id_user: 1,
-        cars: shopingCart,
+        cars: JSON.stringify(shopingCart),
         total_cost: totalCost,
       };
 

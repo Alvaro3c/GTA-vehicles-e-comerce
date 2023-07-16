@@ -16,11 +16,12 @@ const getAllOrders = async () => {
     return result
 }
 
-const createdOrder = async () => {
+const createdOrder = async (id_user, cars, total_cost) => {
     let client, result;
+    console.log(id_user)
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createOrder)
+        const data = await client.query(queries.createOrder, [id_user, cars, total_cost])
         result = data.rows
     } catch (err) {
         console.log(err);
