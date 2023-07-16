@@ -1,7 +1,12 @@
 import React from "react";
+import { useUserContext } from "../contexts/UserContext";
 
 const PastOrders = () => {
-  return <div>PastOrders</div>;
+  const userData = useUserContext()
+  console.log(userData)
+  return <>
+    {userData?.user?.nick_name}
+  </>;
 };
 
 export default PastOrders;

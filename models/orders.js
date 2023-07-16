@@ -32,10 +32,24 @@ const createdOrder = async (id_user, cars, total_cost) => {
     return result
 }
 
+const getOrdersByUserId = async (userId) => {
+    try {
+        // Fetch all orders associated with the given userId from the database
+        const orders = await pool.query("SELECT * FROM orders WHERE id_user = $1", [userId]);
+        return orders.rows;
+    } catch (error) {
+        console.error("Error fetching orders by user id:", error);
+        throw error;
+    }
+};
+
+
+
 
 const orders = {
     getAllOrders,
-    createdOrder
+    createdOrder,
+    getOrdersByUserId
 }
 
 module.exports = orders;

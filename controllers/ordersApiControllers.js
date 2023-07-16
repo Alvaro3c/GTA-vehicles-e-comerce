@@ -11,7 +11,6 @@ const createOrder = async (req, res) => {
         const { id_user, cars, total_cost } = req.body;
         // Perform necessary validations on the received data
         // Insert the order data into the PostgreSQL database using the appropriate model or ORM
-
         // Example code to insert the order using the order model
         const createdOrder = await order.createdOrder(id_user, cars, total_cost);
 
@@ -21,6 +20,25 @@ const createOrder = async (req, res) => {
         res.status(500).json({ error: "Error creating order" });
     }
 };
+
+const getOrderById = async (req, res) => {
+    try {
+        const userId = req.params.id_user;
+        console.log(userId)
+        // Fetch the order from the database based on the userId
+        const orders = await order.getOrdersByUserId(userId);
+
+        if (!orders) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+
+        res.status(200).json(orders);
+    } catch (error) {
+        console.error("Error fetching order:", error);
+        res.status(500).json({ error: "Error fetching order" });
+    }
+};
+
 
 const updateOrder = async (req, res) => {
     // Implement the update order logic
@@ -35,4 +53,5 @@ module.exports = {
     createOrder,
     updateOrder,
     deleteOrder,
+    getOrderById
 };

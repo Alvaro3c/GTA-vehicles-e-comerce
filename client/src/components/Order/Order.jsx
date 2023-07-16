@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
+import { useUserContext } from "../contexts/UserContext";
 
 
 const Order = ({ shopingCart }) => {
@@ -15,10 +16,12 @@ const Order = ({ shopingCart }) => {
     calculateTotalCost();
   }, [shopingCart]);
 
+  const userData = useUserContext()
+  console.log(userData)
   const handleOrderSubmit = async () => {
     try {
       const orderData = {
-        id_user: 1,
+        id_user: userData?.user?.id_user,
         cars: JSON.stringify(shopingCart),
         total_cost: totalCost,
       };

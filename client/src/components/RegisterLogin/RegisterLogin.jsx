@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie"
 
 const RegisterLogin = () => {
   const isMounted = useRef(true); // Create a ref to track component's mount status
@@ -16,19 +17,21 @@ const RegisterLogin = () => {
     e.preventDefault();
     try {
       const logInData = {
-        "nick_name": e.target.logInNick.value,
         "email": e.target.logInEmail.value,
         "password": e.target.logInPassword.value
       };
 
-      const response = await axios.post("http://localhost:3000/api/orders", logInData);
+      const response = await axios.post("http://localhost:3000/api/users/login", logInData);
 
-      if (response.status === 201 && isMounted.current) {
-        console.log("Order created successfully");
-        // Clear the shopping cart or perform any other necessary actions
+      if (response.status === 200) { // Updated status check to 200 for successful login
+        console.log("Login successful");
+        Cookies.set("email", e.target.logInEmail.value)
+        Cookies.set("password", e.target.logInPassword.value)
+        // Redirect to the home page on successful login
+        // history.push("/home");
       }
     } catch (error) {
-      console.error("Error creating order:", error);
+      console.error("Error loging in:", error);
     }
   };
 

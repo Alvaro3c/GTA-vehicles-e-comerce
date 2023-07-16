@@ -21,11 +21,12 @@ const register = async (req, res) => {
         );
 
         const userId = newUser.rows[0].id_user;
+        const userData = user.rows[0];
 
         // Generate a JWT token
         const token = generateToken(userId);
 
-        res.status(201).json({ message: "User registered successfully", token });
+        res.status(201).json({ message: "User registered successfully", token, userData });
     } catch (error) {
         console.error("Error registering user:", error);
         res.status(500).json({ error: "Error registering user" });
@@ -49,11 +50,11 @@ const login = async (req, res) => {
         }
 
         const userId = user.rows[0].id;
-
+        const userData = user.rows[0];
         // Generate a JWT token
         const token = generateToken(userId);
 
-        res.status(200).json({ message: "Login successful", token });
+        res.status(200).json({ message: "Login successful", token, userData });
     } catch (error) {
         console.error("Error logging in:", error);
         res.status(500).json({ error: "Error logging in" });
