@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useUserContext } from "../contexts/UserContext";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
-import { useUserContext } from "../contexts/UserContext";
+import Button from 'react-bootstrap/Button';
 
 
 const Order = ({ shopingCart }) => {
@@ -56,6 +57,7 @@ const Order = ({ shopingCart }) => {
                 <img src="{item}" alt="" />
               </Card.Body>
             </Card>))}
+          <p>{ }</p>
         </article>
       ) : (
         <p>Your shopping cart is empty.</p>
