@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useUserContext } from "../contexts/UserContext";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import './Order.css'
 
 
 const Order = ({ shopingCart }) => {
@@ -40,7 +41,7 @@ const Order = ({ shopingCart }) => {
             popup: 'colored-toast'
           },
           showConfirmButton: false,
-          timer: 300000,
+          timer: 4000,
           timerProgressBar: true
         })
         await Toast.fire({

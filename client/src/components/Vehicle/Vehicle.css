@@ -10,3 +10,7 @@
 .card {
     background-color: black !important;
 }
+
+.colored-toast.swal2-icon-info {
+    background-color: #3fc3ee !important;
+}

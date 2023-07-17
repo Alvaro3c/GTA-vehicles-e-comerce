@@ -2,3 +2,7 @@
     margin: 3%;
     border: none;
 }
+
+.colored-toast.swal2-icon-info {
+    background-color: #3fc3ee !important;
+}

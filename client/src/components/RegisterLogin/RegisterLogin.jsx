@@ -4,6 +4,8 @@ import Cookies from "js-cookie"
 import UserContext, { useUserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import './RegisterLogin.css'
+import Swal from 'sweetalert2';
+
 
 
 const RegisterLogin = () => {
@@ -59,8 +61,23 @@ const RegisterLogin = () => {
         Cookies.set("email", e.target.registerEmail.value)
         Cookies.set("password", e.target.registerPassword.value)
 
+
         userData.setUser(response?.data?.userData)
-        // Clear the shopping cart or perform any other necessary actions
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-right',
+          iconColor: 'white',
+          customClass: {
+            popup: 'colored-toast'
+          },
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true
+        })
+        await Toast.fire({
+          icon: 'success',
+          title: 'You have been registered'
+        })
       }
     } catch (error) {
       console.error("Error creating user:", error);
@@ -75,7 +92,7 @@ const RegisterLogin = () => {
         <form action="" className="auth-forms" onSubmit={handleLoginSubmit} id="login-form">
           <input name="logInEmail" type="text" placeholder="Write your email" />
           <input name="logInPassword" type="password" placeholder="write your password" />
-          <button class="form-btn" type="submit" className="form-btn">Log in</button>
+          <button type="submit" className="form-btn">Log in</button>
         </form>
         <p>Not registered yet? register down here</p>
         <form action="" className="auth-forms" onSubmit={handleRegisterSubmit} id="register-form">

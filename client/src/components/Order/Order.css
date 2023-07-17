@@ -2,6 +2,12 @@
     background-color: #a5dc86 !important;
 }
 
+.swal2-popup {
+    background-color: aqua;
+}
+
+/* swal2-toast colored-toast swal2-icon-success swal2-show */
+
 .swal2-success-ring {
     color: #a5dc86
 }

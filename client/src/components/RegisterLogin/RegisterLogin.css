@@ -14,12 +14,16 @@ h1 {
 }
 
 input {
+
     border: none;
     border-bottom: 1px solid bisque;
     height: 40px;
     margin-bottom: 20px;
-
+    color: white;
+    outline: none;
 }
+
+
 
 .form-btn {
     padding: 10px;

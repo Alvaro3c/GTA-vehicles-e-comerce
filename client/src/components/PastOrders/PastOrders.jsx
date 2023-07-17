@@ -23,7 +23,7 @@ const PastOrders = () => {
     }
   }, [userData?.user])
   return <>
-    {userData?.user?.nick_name}
+
     {orderData.map((order, index) => (
       <OrderCard
         key={index}
