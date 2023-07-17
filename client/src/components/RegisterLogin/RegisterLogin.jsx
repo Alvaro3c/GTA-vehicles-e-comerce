@@ -69,18 +69,22 @@ const RegisterLogin = () => {
 
   return (
     <>
-      <form action="" onSubmit={handleLoginSubmit}>
-        <input name="logInEmail" type="text" placeholder="Write your email" />
-        <input name="logInPassword" type="text" placeholder="write your password" />
-        <button type="submit" className="form-btn">Log in</button>
-      </form>
-      <p>Not registered yet? register down here</p>
-      <form action="" onSubmit={handleRegisterSubmit}>
-        <input name="registerNick" type="text" placeholder="Write a nick name" />
-        <input name="registerEmail" type="text" placeholder="Place your email" />
-        <input name="registerPassword" type="text" placeholder="Write a new password" />
-        <button type="submit" className="form-btn">Register</button>
-      </form>
+      <h1>Welcome to GTA rides</h1>
+      <section id="forms">
+        <p>Log in</p>
+        <form action="" className="auth-forms" onSubmit={handleLoginSubmit} id="login-form">
+          <input name="logInEmail" type="text" placeholder="Write your email" />
+          <input name="logInPassword" type="password" placeholder="write your password" />
+          <button class="form-btn" type="submit" className="form-btn">Log in</button>
+        </form>
+        <p>Not registered yet? register down here</p>
+        <form action="" className="auth-forms" onSubmit={handleRegisterSubmit} id="register-form">
+          <input name="registerNick" type="text" placeholder="Write a nick name" />
+          <input name="registerEmail" type="text" placeholder="Place your email" />
+          <input name="registerPassword" type="password" placeholder="Write a new password" />
+          <button type="submit" className="form-btn">Register</button>
+        </form>
+      </section>
     </>
   );
 };

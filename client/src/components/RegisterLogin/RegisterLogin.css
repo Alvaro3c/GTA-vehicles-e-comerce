@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+    padding: 20px;
+}
+
+.auth-forms {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 170px;
+    padding: 30px;
+    border: 1px solid bisque;
+    border-radius: 20px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid bisque;
+    height: 40px;
+    margin-bottom: 20px;
+
+}
+
+.form-btn {
+    padding: 10px;
+    margin-top: 40px;
+    background-color: rgb(48, 34, 8);
+}
+
+#forms {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
