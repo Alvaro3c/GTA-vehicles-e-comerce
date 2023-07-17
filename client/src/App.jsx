@@ -45,7 +45,6 @@ function App() {
       getUser()
     }
   }, [Cookie.get("email")])
-  console.log(user)
   return (
     <>
       <UserContext.Provider

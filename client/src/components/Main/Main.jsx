@@ -12,7 +12,7 @@ const Main = () => {
 
   const [search, setSearch] = useState('')
   const [shopingCart, setShopingCart] = useState([]);
-  console.log(shopingCart);
+
 
   return <>
 

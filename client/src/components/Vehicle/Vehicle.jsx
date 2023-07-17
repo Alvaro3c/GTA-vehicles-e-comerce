@@ -26,7 +26,7 @@ const Vehicle = ({ shopingCart, manufacturer, model, price, setShopingCart, imgU
 
 
 
-    <Card style={{ width: '18rem' }} className="cards border-0 text-bg-success m-3">
+    <Card style={{ width: '18rem' }} className="cards border-0 text-bg-dark m-3">
       <Card.Img variant="top" src={imgUrl} alt={model} />
       <Card.Body>
         <Card.Title className="model">{model}</Card.Title>

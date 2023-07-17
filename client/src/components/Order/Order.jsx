@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useUserContext } from "../contexts/UserContext";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import Swal from 'sweetalert2'
 
 
 const Order = ({ shopingCart }) => {
   const [totalCost, setTotalCost] = useState(0);
-  console.log(shopingCart)
+
+
   useEffect(() => {
     const calculateTotalCost = () => {
-      const cost = shopingCart.reduce((acc, item) => acc + item.price, 0);
+      const cost = shopingCart.reduce((acc, item) => (acc + item.price) * item.quantity, 0);
       setTotalCost(cost);
     };
 
@@ -18,7 +19,7 @@ const Order = ({ shopingCart }) => {
   }, [shopingCart]);
 
   const userData = useUserContext()
-  console.log(userData)
+
   const handleOrderSubmit = async () => {
     try {
       const orderData = {
@@ -30,8 +31,22 @@ const Order = ({ shopingCart }) => {
       const response = await axios.post("http://localhost:3000/api/orders", orderData);
 
       if (response.status === 201) {
-        console.log("Order created successfully");
-        // Clear the shopping cart or perform any other necessary actions
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-center',
+          iconColor: 'white',
+          customClass: {
+            popup: 'colored-toast'
+          },
+          showConfirmButton: false,
+          timer: 300000,
+          timerProgressBar: true
+        })
+        await Toast.fire({
+          icon: 'success',
+          title: 'Order Submited'
+        })
       }
     } catch (error) {
       console.error("Error creating order:", error);
@@ -45,8 +60,8 @@ const Order = ({ shopingCart }) => {
 
         <article>
           {shopingCart.map((item, index) => (
-            <Card key={index} className="m-4 border-0">
-              <Card.Header className="color">{item.make + ' ' + item.model}</Card.Header>
+            <Card key={index} className="m-4 border-0 text-light" >
+              <Card.Header className="color bg-light text-dark">{item.make + ' ' + item.model}</Card.Header>
               <Card.Body>
                 <Card.Text>
                   {'price: ' + item.price.toLocaleString('en-US') + ' ' + 'GTA$'}
@@ -57,7 +72,7 @@ const Order = ({ shopingCart }) => {
                 <img src="{item}" alt="" />
               </Card.Body>
             </Card>))}
-          <p>{ }</p>
+
         </article>
       ) : (
         <p>Your shopping cart is empty.</p>
@@ -66,6 +81,7 @@ const Order = ({ shopingCart }) => {
       <p>Total cost: {totalCost.toLocaleString('en-US') + ' ' + 'GTA$'}</p>
       <button onClick={handleOrderSubmit}>Submit Your Order</button>
     </section>
+
 
   </>
 };

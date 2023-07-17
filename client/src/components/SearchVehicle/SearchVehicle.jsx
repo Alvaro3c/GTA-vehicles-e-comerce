@@ -11,7 +11,7 @@ const SearchVehicle = ({ setSearch, shopingCart, setShopingCart }) => {
     setSearch(e.target.value)
   }
 
-  return <form>
+  return <form onSubmit={(e) => { e.preventDefault() }}>
     <input type="text" placeholder="Search Vehicle" onChange={changeHandler} value={searchValue} />
     <VehicleList search={searchValue} shopingCart={shopingCart} setShopingCart={setShopingCart} setSearch={setSearchValue} />
 

@@ -8,6 +8,11 @@ button {
     color: rgb(255, 170, 0);
     margin: 30px;
     margin-right: 20px;
+    background-color: black;
+}
+
+input {
+    background-color: black;
 }
 
 .type-select:focus {

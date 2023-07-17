@@ -58,7 +58,7 @@ const RegisterLogin = () => {
         console.log("User has been registered");
         Cookies.set("email", e.target.registerEmail.value)
         Cookies.set("password", e.target.registerPassword.value)
-        console.log(response)
+
         userData.setUser(response?.data?.userData)
         // Clear the shopping cart or perform any other necessary actions
       }

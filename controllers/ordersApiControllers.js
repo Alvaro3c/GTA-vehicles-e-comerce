@@ -24,7 +24,6 @@ const createOrder = async (req, res) => {
 const getOrderById = async (req, res) => {
     try {
         const userId = req.params.id_user;
-        console.log(userId)
         // Fetch the order from the database based on the userId
         const orders = await order.getOrdersByUserId(userId);
 

@@ -19,10 +19,9 @@ const VehicleList = (props) => {
     setSelectedType(e.target.value);
     setSortAtoZ(false); // Set the default sorting order to ascending (A to Z)
   };
-  console.log(vehicles)
   useEffect(() => {
+    console.log(selectedPage, 'useEffect')
     if (search === '') {
-      console.log("first")
       getVehicles();
       setSelectedPage(1);
       handlePageChange(1)
@@ -41,13 +40,16 @@ const VehicleList = (props) => {
     const resp = await fetch(`https://gta.vercel.app/api/vehicles/class/${selectedType}`);
     const data = await resp.json();
     const arrVehicles = Object.values(data);
+    //console.log("arrVehicles:", arrVehicles);
     setVehicles(arrVehicles);
     handleSortAndPageChange(arrVehicles);
   }
 
   const handleSortAndPageChange = (sortedVehiclesData) => {
 
+    //console.log("Sorting and paging...");
     const slicedData = sortedVehiclesData.slice(0, itemsPerPage);
+    //console.log("Sliced data:", slicedData);
     setSortedVehicles(sortedVehiclesData);
     setVehiclesSliced(slicedData);
     setSelectedPage(1);
@@ -73,10 +75,12 @@ const VehicleList = (props) => {
   };
 
   const handlePageChange = (page) => {
+    //console.log("Page changed to:", page);
     setSelectedPage(page);
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = page * itemsPerPage;
     const slicedData = sortedVehicles.slice(startIndex, endIndex);
+    //console.log("Sliced data:", slicedData);
     setVehiclesSliced(slicedData);
   };
 
@@ -108,7 +112,7 @@ const VehicleList = (props) => {
         ))}
         <button
           disabled={selectedPage === totalPages}
-          onClick={() => handlePageChange(selectedPage + 1)}
+          onClick={() => { handlePageChange(selectedPage + 1) }}
         >
           <span aria-hidden="true">&raquo;</span>
           <span className="sr-only">Next</span>

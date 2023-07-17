@@ -6,3 +6,7 @@
     background-color: rgb(199, 125, 34) !important;
     border: none !important;
 }
+
+.card {
+    background-color: black !important;
+}

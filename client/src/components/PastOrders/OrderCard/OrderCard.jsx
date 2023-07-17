@@ -10,18 +10,17 @@ const OrderCard = ({ orderId, totalCost, orderDate, cars }) => {
   };
   return (
     <div>
-
-      <Card>
-        <Card.Header>Order ID: {orderId}</Card.Header>
+      <Card className="card border-0" >
+        <Card.Header className="bg-light">Order ID: {orderId}</Card.Header>
         <Card.Body>
-          <Card.Title className="text-light">Total Cost: {totalCost}</Card.Title>
+          <Card.Title className="text-light">Total Cost: {totalCost.toLocaleString("en-US") + ' GTA$'}</Card.Title>
           <Card.Title className="text-light">Order Date: {formatDate(orderDate)}</Card.Title>
           <Card.Title className="text-light">Cars:</Card.Title>
-          <Card.Text className="border-light">
+          <Card.Text className="orderd-cars text-light">
             {cars.map((car, carIndex) => (
-              <article className="ordered-cars" key={carIndex}>
-                <p>Car Name: {`${car.make} ${car.model}`}</p>
-                <p>Price: {car.price}</p>
+              <article key={carIndex}>
+                <p>Car Name: {`${car.make} ${car.model} || quantity: ${car.quantity}`}</p>
+                <p>Price: {car.price.toLocaleString("en-US")}</p>
               </article>
             ))}
           </Card.Text>
