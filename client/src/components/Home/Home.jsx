@@ -19,15 +19,15 @@ const Home = () => {
 
     <h1>Welcome {userData?.user?.nick_name} to GTA rides online shoping</h1>
     <section>
-      <Carousel className="carousel-container" activeIndex={index} onSelect={handleSelect}>
+      <Carousel className="carousel-container d-md-block mx-auto" activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item className="center">
-          <img src={Photo1} alt="" className="d-block w-60 rounded mx-auto" />
+          <img src={Photo1} alt="" className="d-block img-fluid rounded mx-auto" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={Photo2} alt="" className="d-block w-60 rounded mx-auto" />
+          <img src={Photo2} alt="" className="d-block img-fluid rounded mx-auto" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={Photo3} alt="" className="d-block w-60 rounded mx-auto" />
+          <img src={Photo3} alt="" className="d-block img-fluid rounded mx-auto" />
         </Carousel.Item>
       </Carousel>
     </section>
