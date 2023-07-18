@@ -10,9 +10,7 @@ CREATE TABLE
     order(
         id_order SERIAL PRIMARY KEY,
         id_user INTEGER,
-        Foreign Key (id_user) REFERENCES user(id_user)
-        /* foreign key */
-        cars JSON,
+        Foreign Key (id_user) REFERENCES user(id_user) cars JSON,
         total_cost INTEGER NOT NULL,
         order_date DATE NOT NULL DEFAULT CURRENT_DATE,
     );

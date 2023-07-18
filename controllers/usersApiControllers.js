@@ -1,6 +1,15 @@
 const pool = require("../utils/db-sql-orders");
 const { hashPassword, comparePasswords, generateToken } = require("../utils/authUtils");
 
+/**
+* @memberof usersApiControllers 
+* @method register 
+* @async 
+* @param {Object} req 
+* @param {Object} res  
+* @return {json} 
+* @throws {error} 
+*/
 const register = async (req, res) => {
     try {
         const { nick_name, email, password } = req.body;
@@ -32,7 +41,15 @@ const register = async (req, res) => {
         res.status(500).json({ error: "Error registering user" });
     }
 };
-
+/**
+* @memberof orderApiControllers 
+* @method login 
+* @async 
+* @param {Object} req 
+* @param {Object} res  
+* @return {json} 
+* @throws {error} 
+*/
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;

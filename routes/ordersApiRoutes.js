@@ -5,6 +5,6 @@ const ordersApiRouter = express.Router();
 ordersApiRouter.get('/:id_user', ordersApiControllers.getOrderById);
 ordersApiRouter.get('/', ordersApiControllers.getAllOrders);
 ordersApiRouter.post('/', ordersApiControllers.createOrder);
-ordersApiRouter.delete('/', ordersApiControllers.deleteOrder);
+
 
 module.exports = ordersApiRouter;

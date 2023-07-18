@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from './components/Header/Header'
 import Main from './components/Main/Main'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
