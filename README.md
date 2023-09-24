@@ -35,7 +35,7 @@ This app is a simulated e comerce powered by React and nodeJS where you can brow
 ## How to Use
 ### BackEnd
 Run the line npm start on the root folder and npm install to install dependencies. it Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [https://gta-rides-e-comerce.onrender.com](https://gta-rides-e-comerce.onrender.com) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.

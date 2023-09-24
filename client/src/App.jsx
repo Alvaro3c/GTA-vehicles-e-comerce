@@ -24,7 +24,7 @@ function App() {
           "password": password
         };
 
-        const response = await axios.post("http://localhost:3000/api/users/login", logInData);
+        const response = await axios.post("https://gta-rides-e-comerce.onrender.com/api/users/login", logInData);
         //response has the data of the user
         if (response.status === 200) { // Updated status check to 200 for successful login
           console.log("Login successful");

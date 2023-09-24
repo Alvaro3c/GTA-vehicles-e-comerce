@@ -29,7 +29,7 @@ const RegisterLogin = () => {
         "password": e.target.logInPassword.value
       };
 
-      const response = await axios.post("http://localhost:3000/api/users/login", logInData);
+      const response = await axios.post("https://gta-rides-e-comerce.onrender.com/api/users/login", logInData);
 
       if (response.status === 200) { // Updated status check to 200 for successful login
         console.log("Login successful");
@@ -54,7 +54,7 @@ const RegisterLogin = () => {
       };
       setRegisterData(registerData);
 
-      const response = await axios.post("http://localhost:3000/api/users/register", registerData);
+      const response = await axios.post("https://gta-rides-e-comerce.onrender.com/api/users/register", registerData);
 
       if (response.status === 201) {
         console.log("User has been registered");

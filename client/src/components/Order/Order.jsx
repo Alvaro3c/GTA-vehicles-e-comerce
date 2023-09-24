@@ -29,7 +29,7 @@ const Order = ({ shopingCart }) => {
         total_cost: totalCost,
       };
 
-      const response = await axios.post("http://localhost:3000/api/orders", orderData);
+      const response = await axios.post("https://gta-rides-e-comerce.onrender.com/api/orders", orderData);
 
       if (response.status === 201) {
 

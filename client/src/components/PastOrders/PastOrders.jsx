@@ -4,7 +4,7 @@ import OrderCard from "../PastOrders/OrderCard/OrderCard"
 
 const PastOrders = () => {
   const userData = useUserContext()
-  const baseUrl = 'http://localhost:3000/api/orders/'
+  const baseUrl = 'https://gta-rides-e-comerce.onrender.com/api/orders/'
   const [orderData, setOrderData] = useState([]);
 
 
