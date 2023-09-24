@@ -17,7 +17,7 @@ const Home = () => {
   };
   return <>
 
-    <h1>Welcome {userData?.user?.nick_name} to GTA rides online shoping</h1>
+    <h1>Welcome {userData?.user?.nick_name} to GTA rides online shoping test</h1>
     <section>
       <Carousel className="carousel-container d-md-block mx-auto" activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item className="center">
